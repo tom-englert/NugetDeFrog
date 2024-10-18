@@ -51,11 +51,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cocona.Lite" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.11.1" />
-    <PackageReference Include="NuGet.Packaging" Version="6.11.1" />
-    <PackageReference Include="TomsToolbox.Essentials" Version="2.20.0" />
+    <PackageReference Include="Cocona.Lite" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" />
+    <PackageReference Include="NuGet.Frameworks" />
+    <PackageReference Include="NuGet.Packaging" />
+    <PackageReference Include="TomsToolbox.Essentials" />
   </ItemGroup>
 
   <Target Name="UpdateNotice" BeforeTargets="Build">
