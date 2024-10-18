@@ -99,6 +99,9 @@ internal static class App
 
         projectFile.Save(outputFile);
 
+        Console.WriteLine($"Input: {string.Join(", ", files)}");
+        Console.WriteLine($"Project file saved to '{outputFile}'");
+
         return 0;
     }
 
