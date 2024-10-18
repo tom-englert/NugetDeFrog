@@ -1,0 +1,52 @@
+This product bundles the following components under the described licenses:
+
+--------------------------------------------------------------------------------
+
+Cocona.Lite
+
+Id:        Cocona.Lite
+Version:   2.2.0
+Project:   https://github.com/mayuki/Cocona
+Copyright: Copyright 2020-present Mayuki Sawatari
+License:   MIT
+
+--------------------------------------------------------------------------------
+
+Microsoft.Extensions.DependencyModel
+
+Id:        Microsoft.Extensions.DependencyModel
+Version:   8.0.2
+Project:   https://dot.net/
+Copyright: © Microsoft Corporation. All rights reserved.
+License:   MIT
+
+--------------------------------------------------------------------------------
+
+NuGet.Frameworks
+
+Id:        NuGet.Frameworks
+Version:   6.11.1
+Project:   https://aka.ms/nugetprj
+Copyright: © Microsoft Corporation. All rights reserved.
+License:   Apache-2.0
+
+--------------------------------------------------------------------------------
+
+NuGet.Packaging
+
+Id:        NuGet.Packaging
+Version:   6.11.1
+Project:   https://aka.ms/nugetprj
+Copyright: © Microsoft Corporation. All rights reserved.
+License:   Apache-2.0
+
+--------------------------------------------------------------------------------
+
+Tom's Toolbox Essentials Module
+
+Id:        TomsToolbox.Essentials
+Version:   2.20.0
+Project:   https://github.com/tom-englert/TomsToolbox
+Copyright: © 2012-2024 tom-englert.de
+License:   MIT
+
