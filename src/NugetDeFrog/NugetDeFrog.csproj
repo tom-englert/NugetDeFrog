@@ -11,9 +11,6 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalyzerMode>All</AnalyzerMode>
-    <AnalysisLevel>8.0</AnalysisLevel>
     <WarningsAsErrors>nullable</WarningsAsErrors>
   </PropertyGroup>
 
@@ -47,7 +44,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\..\Notice.txt" Link="Notice.txt" Pack="true" PackagePath="\" />
+    <None Include="..\..\Notice.txt" Pack="true" PackagePath="\" />
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
