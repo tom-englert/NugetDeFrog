@@ -59,8 +59,8 @@
     <PackageReference Include="TomsToolbox.Essentials" />
   </ItemGroup>
 
-  <Target Name="UpdateNotice" BeforeTargets="Build">
-    <Exec Command="../../UpdateNotice.cmd" />
-  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\UpdateNotice\UpdateNotice.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 
 </Project>
