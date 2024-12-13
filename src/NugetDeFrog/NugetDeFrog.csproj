@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <IsDeploymentTarget>true</IsDeploymentTarget>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
@@ -47,6 +47,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="..\..\Notice.txt" Link="Notice.txt" Pack="true" PackagePath="\" />
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
@@ -61,6 +62,5 @@
   <Target Name="UpdateNotice" BeforeTargets="Build">
     <Exec Command="../../UpdateNotice.cmd" />
   </Target>
-
 
 </Project>
