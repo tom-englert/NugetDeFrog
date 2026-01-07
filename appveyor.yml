@@ -2,6 +2,13 @@ image: Visual Studio 2022
 environment:
   DOTNET_NOLOGO: true
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+install:
+- ps: |
+    $sdkUrl = "https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1"
+    Invoke-WebRequest -Uri $sdkUrl -OutFile "dotnet-install.ps1"
+    .\dotnet-install.ps1 -Channel 10.0 -InstallDir "$env:ProgramFiles\dotnet"
+    $env:PATH = "$env:ProgramFiles\dotnet;$env:PATH"
+    dotnet --version
 build_script:
 - dotnet build src/NugetDeFrog.sln --configuration Release
 test: off

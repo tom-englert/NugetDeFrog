@@ -34,7 +34,11 @@ internal static class App
         using var reader = new Microsoft.Extensions.DependencyModel.DependencyContextJsonReader();
 
         var models = files
-            .Select(file => { using var stream = File.OpenRead(file); return reader.Read(stream); })
+            .Select(file =>
+            {
+                using var stream = File.OpenRead(file);
+                return reader.Read(stream);
+            })
             .ToArray();
 
         var targetFrameworks = string.Join(";", models
