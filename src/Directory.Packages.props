@@ -6,9 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Cocona.Lite" Version="2.2.0" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="10.0.1" />
-    <PackageVersion Include="NuGet.Frameworks" Version="7.0.1" />
-    <PackageVersion Include="NuGet.Packaging" Version="7.0.1" />
-    <PackageVersion Include="TomsToolbox.Essentials" Version="2.22.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyModel" Version="10.0.5" />
+    <PackageVersion Include="NuGet.Frameworks" Version="7.3.0" />
+    <PackageVersion Include="NuGet.Packaging" Version="7.3.0" />
+    <PackageVersion Include="TomsToolbox.Essentials" Version="2.23.0" />
   </ItemGroup>
 </Project>

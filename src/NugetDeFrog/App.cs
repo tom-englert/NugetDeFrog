@@ -18,8 +18,10 @@ internal static class App
         [Option("output", Description = "Path to the output project file.")]
         string outputFile = @"RuntimePackages\RuntimePackages.csproj",
         [Option("windows", Description = "Use windows target platform; required if any of the projects require windows platform")]
-        bool useWindowsPlatform = false
-        )
+        bool useWindowsPlatform = false,
+        [Option("consolidate", Description = "Consolidate multiple versions of the same package to the highest version. By default, the tool will fail if multiple versions of the same package are found.")]
+        bool consolidate = false
+    )
     {
         var files = GetFiles(fileOrDirectory);
 
@@ -64,13 +66,35 @@ internal static class App
         var multipleVersions = packageIdentities
             .GroupBy(p => p.Id)
             .Where(g => g.Count() > 1)
-            .Select(g => g.Key)
             .ToArray();
+
+        Console.WriteLine("Input files:");
+        foreach (var file in files)
+        {
+            Console.WriteLine($" - {file}");
+        }
 
         if (multipleVersions.Length > 0)
         {
-            Console.WriteLine($"Multiple versions of the following packages are referenced: {string.Join(", ", multipleVersions)}");
-            return 3;
+            if (consolidate)
+            {
+                Console.WriteLine("Consolidating multiple versions of the following packages:");
+                foreach (var version in multipleVersions)
+                {
+                    Console.WriteLine($" - {version.Key}: {string.Join(", ", version.Select(p => p.Version.ToNormalizedString()))}");
+                }
+
+                Console.WriteLine();
+                packageIdentities = packageIdentities
+                    .GroupBy(p => p.Id)
+                    .Select(g => g.OrderByDescending(p => p.Version).First())
+                    .ToArray();
+            }
+            else
+            {
+                Console.WriteLine($"Multiple versions of the following packages are referenced: {string.Join(", ", multipleVersions.Select(g => g.Key))}");
+                return 3;
+            }
         }
 
         var projectNode = new XElement("Project");
@@ -103,11 +127,12 @@ internal static class App
 
         projectFile.Save(outputFile);
 
-        Console.WriteLine($"Input: {string.Join(", ", files)}");
-        Console.WriteLine($"Project file saved to '{outputFile}'");
+        Console.WriteLine();
+        Console.WriteLine($"Project file saved to '{Path.GetFullPath(outputFile)}'");
 
         return 0;
     }
+
 
     private static string[] GetFiles(string? fileOrDirectory)
     {
