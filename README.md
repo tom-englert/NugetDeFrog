@@ -1,5 +1,5 @@
 # NugetDeFrog
-[![Build status](https://ci.appveyor.com/api/projects/status/qbl5og1ivs4iibnm/branch/main?svg=true)](https://ci.appveyor.com/project/tom-englert/nugetdefrog/branch/main)
+[![Build status](https://github.com/tom-englert/NugetDeFrog/actions/workflows/build.yml/badge.svg)](https://github.com/tom-englert/NugetDeFrog/actions/workflows/build.yml)
 [![NuGet Status](https://img.shields.io/nuget/v/TomsToolbox.NugetDeFrog.svg)](https://www.nuget.org/packages/TomsToolbox.NugetDeFrog/)
 
 A DotNet command line tool to create a project that references only the runtime packages from an applications *.deps.json file
