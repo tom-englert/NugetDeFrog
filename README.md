@@ -16,7 +16,7 @@ This project then can then be scanned by the package scanner to get a more accur
 
 ## Usage
 ```
-Usage: NugetDeFrog [--output <String>] [--windows] [--help] [--version] file-or-directory
+Usage: NugetDeFrog [--output <String>] [--windows] [--consolidate] [--help] [--version] [file-or-directory]
 
 NugetDeFrog
 
@@ -25,15 +25,18 @@ Arguments:
 
 Options:
   --output <String>    Path to the output project file. (Default: RuntimePackages\RuntimePackages.csproj)
-  --windows            Use windows target platform; required if any of the projects require windows platform
+  --windows            Use windows target platform (applied to .NET / .NET Core target frameworks only, not to .NET Framework); required if any of the projects require windows platform
   --consolidate        Consolidate multiple versions of the same package to the highest version. By default, the tool will fail if multiple versions of the same package are found
   -h, --help           Show help message
   --version            Show version
 ```
+
+When `--consolidate` is used, the generated project additionally targets only the highest target framework found in the input files, instead of all of them
+
 ## Example
 
 ```
-dotnet tool install TomsToolbox.NugetDeFrog -g
+dotnet tool update TomsToolbox.NugetDeFrog -g
 NugetDeFrog --output RuntimePackages\RuntimePackages.csproj --windows MyProject\bin\Debug\net8.0\MyProject.deps.json
 jf.exe dotnet restore RuntimePackages\RuntimePackages.csproj --build-name="MyBuild" --build-number="MyBuild.1.2.3" --project="MyProject"
 ```

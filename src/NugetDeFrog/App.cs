@@ -43,9 +43,24 @@ internal static class App
             })
             .ToArray();
 
-        var targetFrameworks = string.Join(";", models
-            .Select(m => NuGetFramework.Parse(m.Target.Framework).GetShortFolderName())
-            .Select(m => useWindowsPlatform ? $"{m}-windows" : m)
+        var frameworks = models
+            .Select(m => NuGetFramework.Parse(m.Target.Framework))
+            .DistinctBy(f => f.GetShortFolderName(), StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        if (consolidate && frameworks.Length > 1)
+        {
+            frameworks = frameworks
+                .OrderByDescending(IsNetCoreApp)
+                .ThenByDescending(f => f.Version)
+                .Take(1)
+                .ToArray();
+        }
+
+        var targetFrameworks = string.Join(";", frameworks
+            .Select(f => useWindowsPlatform && IsNetCoreApp(f)
+                ? $"{f.GetShortFolderName()}-windows"
+                : f.GetShortFolderName())
             .ToHashSet(StringComparer.OrdinalIgnoreCase)
         );
 
@@ -104,6 +119,8 @@ internal static class App
         projectNode.Add(propertyNode);
 
         propertyNode.Add(new XElement("TargetFrameworks", targetFrameworks));
+        propertyNode.Add(new XElement("NoWarn", "$(NoWarn);NU1701"));
+
         propertyNode.Add(new XElement("ImportDirectoryBuildProps", "false"));
         propertyNode.Add(new XElement("ImportDirectoryBuildTargets", "false"));
         propertyNode.Add(new XElement("ManagePackageVersionsCentrally", "false"));
@@ -131,6 +148,11 @@ internal static class App
         Console.WriteLine($"Project file saved to '{Path.GetFullPath(outputFile)}'");
 
         return 0;
+    }
+
+    private static bool IsNetCoreApp(NuGetFramework f)
+    {
+        return StringComparer.OrdinalIgnoreCase.Equals(f.Framework, FrameworkConstants.FrameworkIdentifiers.NetCoreApp);
     }
 
 
